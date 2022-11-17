@@ -16,10 +16,11 @@ body {
 input {
   background: transparent;
   border: none;
+  color: #ffffff;
+  font-size: 13pt;
 }
 
 input:focus {
   outline: none;
-  caret-color: #ffffff;
-  caret-shape: block;
+  caret-color: #4b9096;
 }
