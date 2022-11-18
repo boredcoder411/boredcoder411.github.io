@@ -4,12 +4,22 @@ var speed = 50;
 
 function typeWriter() {
   if (i < txt.length) {
-    document.getElementById("demo").innerHTML += txt.charAt(i);
+    document.getElementById("typing").innerHTML += txt.charAt(i);
     i++;
     setTimeout(typeWriter, speed);
   }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  typeWriter();
-})
+typeWriter();
+document.getElementById("cmdline").focus();
+
+var cmd = "";
+
+var input = document.getElementById("cmdline");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    cmd = document.getElementById("cmdline").value;
+    document.getElementById("cmdline").value = "";
+  }
+});
