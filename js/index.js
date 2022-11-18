@@ -23,7 +23,12 @@ input.addEventListener("keypress", function(event) {
     event.preventDefault();
     cmd = document.getElementById("cmdline").value;
     document.getElementById("cmdline").value = "";
+    li = document.createElement('li')
     li.innerHTML = ` > ${cmd}<br>`;
-    document.getElementsByTagName("ul").appendChild(li);
+    document.querySelector("ul").appendChild(li);
+    switch (cmd) {
+      case "clear":
+        document.querySelector("ul").innerHTML = "";
+    }
   }
 });
