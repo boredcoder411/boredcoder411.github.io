@@ -16,7 +16,7 @@ function addli(text) {
   li = document.createElement('li')
   li.innerHTML = text;
   document.querySelector("ul").appendChild(li);
-  cmd = "";
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 typeWriter();
@@ -31,6 +31,10 @@ input.addEventListener("keypress", function(event) {
     cmd = document.getElementById("cmdline").value;
     document.getElementById("cmdline").value = "";
     switch (cmd) {
+      case "projects":
+        addli(` > ${cmd}`);
+        addli('My projects:<br><a href="https://replit.com/@boredcoder411/crabsay" target="_blank">A copy of cowsay made with rust (hence the crab)</a><br><a href="https://flightsim.boredcoder411.repl.co" target="_blank">An incomplete flight simulator made with threejs</a><br><a href="https://" target="_blank">A live text-based chat room</a>');
+        break;
       case "github":
         addli(` > ${cmd}`);
         addli(`Redirected to my github!`);
@@ -42,10 +46,12 @@ input.addEventListener("keypress", function(event) {
         break;
       case "help":
         addli(` > ${cmd}`);
-        addli("Type help to get started.");
+        addli("A list of commands are:<br>github: sends you to my github<br>langs: lists the languages I know and how good I am at them out of 5<br>clear: clears the screen<br>projects: displays my past and current projects<br>help: displays this menu");
         break;
       case "clear":
         document.querySelector("ul").innerHTML = "";
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         break;
       default:
         if (cmd == "") {
@@ -55,6 +61,8 @@ input.addEventListener("keypress", function(event) {
           addli(` > Command "${cmd}" not recognized. Type help to get started.`);
         }
         break;
+      cmd = "";
+      window.scrollTo(0, document.body.scrollHeight);
     }
   }
 });
