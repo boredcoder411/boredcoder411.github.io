@@ -35,10 +35,9 @@ input.addEventListener("keypress", function(event) {
         addli(` > ${cmd}`);
         addli('My projects:<br><a href="https://replit.com/@boredcoder411/crabsay" target="_blank">Crabsay, a copy of cowsay made with rust (hence the crab)</a><br><a href="https://flightsim.boredcoder411.repl.co" target="_blank">An incomplete flight simulator made with threejs</a><br><a href="https://" target="_blank">A live text-based chat room</a>');
         break;
-      case "github":
+      case "socials":
         addli(` > ${cmd}`);
-        addli(`Redirected to my github!`);
-        window.open("https://github.com/boredcoder411/", '_blank');
+        addli(`My socials:<br><a href="https://replit.com/@boredcoder411" target="_blank">replit.com</a><br><a href="https://github.com/boredcoder411" target="_blank">github.com</a><br><a href="https://app.hackthebox.com/profile/534937" target="_blank">hackthebox`);
         break;
       case "langs":
         addli(` > ${cmd}`);
