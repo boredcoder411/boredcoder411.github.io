@@ -37,7 +37,7 @@ input.addEventListener("keypress", function(event) {
         break;
       case "socials":
         addli(` > ${cmd}`);
-        addli(`My socials:<br><a href="https://replit.com/@boredcoder411" target="_blank">replit.com</a><br><a href="https://github.com/boredcoder411" target="_blank">github.com</a><br><a href="https://app.hackthebox.com/profile/534937" target="_blank">hackthebox</a><br>Discord: boredcoder#0589`);
+        addli(`My socials:<br><a href="https://replit.com/@boredcoder411" target="_blank">replit</a><br><a href="https://github.com/boredcoder411" target="_blank">github</a><br><a href="https://app.hackthebox.com/profile/534937" target="_blank">hackthebox</a><br>Discord: boredcoder#0589`);
         break;
       case "langs":
         addli(` > ${cmd}`);
