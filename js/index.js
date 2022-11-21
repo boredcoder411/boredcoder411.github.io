@@ -37,7 +37,7 @@ input.addEventListener("keypress", function(event) {
         break;
       case "socials":
         addli(` > ${cmd}`);
-        addli(`My socials:<br><a href="https://replit.com/@boredcoder411" target="_blank">replit.com</a><br><a href="https://github.com/boredcoder411" target="_blank">github.com</a><br><a href="https://app.hackthebox.com/profile/534937" target="_blank">hackthebox`);
+        addli(`My socials:<br><a href="https://replit.com/@boredcoder411" target="_blank">replit.com</a><br><a href="https://github.com/boredcoder411" target="_blank">github.com</a><br><a href="https://app.hackthebox.com/profile/534937" target="_blank">hackthebox</a><br>Discord: boredcoder#0589`);
         break;
       case "langs":
         addli(` > ${cmd}`);
@@ -45,7 +45,7 @@ input.addEventListener("keypress", function(event) {
         break;
       case "help":
         addli(` > ${cmd}`);
-        addli("A list of commands are:<br>github: sends you to my github<br>langs: lists the languages I know and how good I am at them out of 5<br>clear: clears the screen<br>projects: displays my past and current projects<br>help: displays this menu");
+        addli("A list of commands are:<br>socials: displays my socials<br>langs: lists the languages I know and how good I am at them out of 5<br>clear: clears the screen<br>projects: displays my past and current projects<br>help: displays this menu");
         break;
       case "clear":
         document.querySelector("ul").innerHTML = "";
