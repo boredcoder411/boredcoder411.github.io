@@ -33,7 +33,7 @@ input.addEventListener("keypress", function(event) {
     switch (cmd) {
       case "projects":
         addli(` > ${cmd}`);
-        addli('My projects:<br><a href="https://replit.com/@boredcoder411/crabsay" target="_blank">Crabsay, a copy of cowsay made with rust (hence the crab)</a><br><a href="https://flightsim.boredcoder411.repl.co" target="_blank">An incomplete flight simulator made with threejs</a><br><a href="https://" target="_blank">A live text-based chat room</a>');
+        addli('My projects:<br><a href="https://replit.com/@boredcoder411/crabsay" target="_blank">Crabsay, a copy of cowsay made with rust (hence the crab)</a><br><a href="https://flightsim.boredcoder411.repl.co" target="_blank">An incomplete flight simulator made with threejs</a><br><a href="https://replit.com/@boredcoder411/chat-example" target="_blank">A live text-based chat room</a><br><a href="https://replit.com/@boredcoder411/Padre-JS" target="_blank">An interpreter for my esoteric language, padre (JS version)</a><br><a href="https://replit.com/@boredcoder411/Padre-Ruby" target="_blank">An interpreter for my esoteric language, padre (Ruby version)</a>');
         break;
       case "socials":
         addli(` > ${cmd}`);
