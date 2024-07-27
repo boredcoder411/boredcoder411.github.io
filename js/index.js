@@ -2,66 +2,93 @@ var i = 0;
 var txt = "Welcome to boredcoder411's website! To get started, type help";
 var speed = 50;
 
-var li;
-
 function typeWriter() {
   if (i < txt.length) {
-    document.getElementById("typing").innerHTML += txt.charAt(i);
-    i++;
+    document.getElementById("typing").innerHTML += txt.charAt(i++);
     setTimeout(typeWriter, speed);
   }
 }
 
 function addli(text) {
-  li = document.createElement('li')
+  let li = document.createElement('li');
   li.innerHTML = text;
   document.querySelector("ul").appendChild(li);
   window.scrollTo(0, document.body.scrollHeight);
 }
 
+function displayRepos() {
+  fetch('https://api.github.com/users/boredcoder411/repos')
+    .then(response => response.json())
+    .then(repos => {
+      let repoList = '<ul>';
+      repos.forEach(repo => {
+        repoList += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a> - ${repo.description || 'No description'}</li>`;
+      });
+      repoList += '</ul>';
+      addli(repoList);
+    })
+    .catch(error => {
+      console.error('Error fetching repos:', error);
+      addli('Error fetching repositories.');
+    });
+}
+
 typeWriter();
 document.getElementById("cmdline").focus();
 
-var cmd = "";
+const commands = {
+  projects: () => {
+    addli('Fetching projects...');
+    displayRepos();
+    return '';
+  },
+  contact: () => `
+    My socials:
+    <ul>
+      <li><a href="https://replit.com/@boredcoder411" target="_blank">replit</a></li>
+      <li><a href="https://github.com/boredcoder411" target="_blank">github</a></li>
+      <li><a href="https://app.hackthebox.com/profile/534937" target="_blank">hackthebox</a></li>
+      <li>Discord: boredcoder#0589</li>
+    </ul>
+  `,
+  skills: () => `
+    My skills:
+    <ul>
+      <li>Rust</li>
+      <li>Javascript</li>
+      <li>Low-Level programming (general assembly knowledge)</li>
+      <li>Selfhosting, server maintenance</li>
+      <li>Expert on ssh and network protocols</li>
+      <li>The Linux kernel and it's APIs</li>
+    </ul>
+  `,
+  help: () => `
+    A list of commands are:
+    <ul>
+      <li>contact: displays my points of contact</li>
+      <li>skills: lists what I am good at</li>
+      <li>clear: clears the screen</li>
+      <li>projects: displays my past and current projects</li>
+      <li>help: displays this menu</li>
+    </ul>
+  `,
+  clear: () => {
+    document.querySelector("ul").innerHTML = "";
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    return '';
+  },
+  default: (cmd) => `Command "${cmd}" not recognized. Type help to get started.`
+};
 
-var input = document.getElementById("cmdline");
-input.addEventListener("keypress", function(event) {
+document.getElementById("cmdline").addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();
-    cmd = document.getElementById("cmdline").value;
-    document.getElementById("cmdline").value = "";
-    switch (cmd) {
-      case "projects":
-        addli(` > ${cmd}`);
-        addli('My projects:<br><a href="https://replit.com/@boredcoder411/crabsay" target="_blank">Crabsay, a copy of cowsay made with rust (hence the crab)</a><br><a href="https://flightsim.boredcoder411.repl.co" target="_blank">An incomplete flight simulator made with threejs</a><br><a href="https://replit.com/@boredcoder411/chat-example" target="_blank">A live text-based chat room</a><br><a href="https://replit.com/@boredcoder411/Padre-JS" target="_blank">An interpreter for my esoteric language, padre (JS version)</a><br><a href="https://replit.com/@boredcoder411/Padre-Ruby" target="_blank">An interpreter for my esoteric language, padre (Ruby version)</a>');
-        break;
-      case "socials":
-        addli(` > ${cmd}`);
-        addli(`My socials:<br><a href="https://replit.com/@boredcoder411" target="_blank">replit</a><br><a href="https://github.com/boredcoder411" target="_blank">github</a><br><a href="https://app.hackthebox.com/profile/534937" target="_blank">hackthebox</a><br>Discord: boredcoder#0589`);
-        break;
-      case "langs":
-        addli(` > ${cmd}`);
-        addli("List of languages I know and how good I am at them:<br> Javascript (5/5)<br> Rust (4/5)<br> Batch (4/5)<br> Bash (5/5)<br> Python (3/5)<br> Java (3/5)<br> Scratch (5/5)<br> R (1/5)<br> PHP (3/5)<br> HTML (5/5)<br> CSS (4/5)<br> SQL (4/5)<br> zsh (5/5)<br> NIX (5/5)");
-        break;
-      case "help":
-        addli(` > ${cmd}`);
-        addli("A list of commands are:<br>socials: displays my socials<br>langs: lists the languages I know and how good I am at them out of 5<br>clear: clears the screen<br>projects: displays my past and current projects<br>help: displays this menu");
-        break;
-      case "clear":
-        document.querySelector("ul").innerHTML = "";
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-        break;
-      default:
-        if (cmd == "") {
-          addli(` > ${cmd}`);
-        } else {
-          addli(` > ${cmd}`);
-          addli(` > Command "${cmd}" not recognized. Type help to get started.`);
-        }
-        break;
-      cmd = "";
-      window.scrollTo(0, document.body.scrollHeight);
-    }
+    let cmd = this.value.trim();
+    this.value = "";
+    
+    addli(` > ${cmd}`);
+    const response = commands[cmd] ? commands[cmd]() : commands.default(cmd);
+    if (response) addli(response);
   }
 });
