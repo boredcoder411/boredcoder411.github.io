@@ -48,7 +48,8 @@ const commands = {
       <li><a href="https://replit.com/@boredcoder411" target="_blank">replit</a></li>
       <li><a href="https://github.com/boredcoder411" target="_blank">github</a></li>
       <li><a href="https://app.hackthebox.com/profile/534937" target="_blank">hackthebox</a></li>
-      <li>Discord: boredcoder#0589</li>
+      <li><a href="https://x.com/boredcoder411">x</a></li>
+      <li>Discord: boredcoder411</li>
     </ul>
   `,
   skills: () => `
